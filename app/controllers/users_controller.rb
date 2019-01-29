@@ -9,8 +9,8 @@ class UsersController < ApplicationController
     # render json: params 
     user = User.new(user_params)
     
-    #does user.save actually run? if only present in conditional statement
-    if user.save!
+    #does user.save actually run? if only present in conditional statement - Yes
+    if user.save
       render json: user
     else
       render json: user.errors.full_messages, status: :unprocessable_entity
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    #does :user refer to our class?
+    #does :user refer to our class? No - refers to our user key (used for nesting)
     params.require(:user).permit(:username, :email)
   end
 end
